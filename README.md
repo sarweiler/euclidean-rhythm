@@ -1,3 +1,3 @@
 # euclidean rhythm
 
-provides euclidean rhythms in variuos forms.
+provides euclidean rhythms in various forms.
