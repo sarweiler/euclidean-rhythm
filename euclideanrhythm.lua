@@ -1,11 +1,11 @@
-local EuclidRhythm = {}
+local EuclideanRhythm = {}
 
 -- localize helper functions
 local merge, build_rhythm, split_beats, split_rest, max_part_length, min_part_length, table_flatten
 
-EuclidRhythm.__index = EuclidRhythm
+EuclideanRhythm.__index = EuclideanRhythm
 
-function EuclidRhythm.beat_as_table(sequence_len, beats_len)
+function EuclideanRhythm.beat_as_table(sequence_len, beats_len)
   if (beats_len > sequence_len) then
     error("beats_len should be less than or equal to sequence_len")
   end
@@ -162,4 +162,4 @@ table_flatten = function(tbl)
 end
 
 
-return EuclidRhythm
+return EuclideanRhythm

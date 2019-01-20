@@ -1,53 +1,53 @@
 lu = require("luaunit")
-er = require("euclidrhythm")
+er = require("euclideanrhythm")
 
-TestEuclidRhythm = {}
+TestEuclideanRhythm = {}
 
-function TestEuclidRhythm:testInstantiationError()
+function TestEuclideanRhythm:testInstantiationError()
   lu.assertError(er.new)
 end
 
-function TestEuclidRhythm:testBeatsSequenceLengthError()
+function TestEuclideanRhythm:testBeatsSequenceLengthError()
   lu.assertError(er.beat_as_table, 3, 5)
 end
 
-function TestEuclidRhythm:testSimpleBeatConstructionAsTable()
+function TestEuclideanRhythm:testSimpleBeatConstructionAsTable()
   local result = er.beat_as_table(4,2)
   local expected = {1, 0, 1, 0}
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testComplexBeatConstructionAsTable()
+function TestEuclideanRhythm:testComplexBeatConstructionAsTable()
   local result = er.beat_as_table(13,5)
   local expected = {1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0}
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testEdgeCaseOnlyBeatsAsTable()
+function TestEuclideanRhythm:testEdgeCaseOnlyBeatsAsTable()
   local result = er.beat_as_table(4,4)
   local expected = {1, 1, 1, 1}
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testEdgeCaseNoBeatsAsTable()
+function TestEuclideanRhythm:testEdgeCaseNoBeatsAsTable()
   local result = er.beat_as_table(4,0)
   local expected = {0, 0, 0, 0}
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testEdgeCaseSingleBeatAsTable()
+function TestEuclideanRhythm:testEdgeCaseSingleBeatAsTable()
   local result = er.beat_as_table(1,1)
   local expected = {1}
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testEdgeCaseLongAsTable()
+function TestEuclideanRhythm:testEdgeCaseLongAsTable()
   local result = er.beat_as_table(109,107)
   local expected = { 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testEdgeCaseLongAndComplexAsTable()
+function TestEuclideanRhythm:testEdgeCaseLongAndComplexAsTable()
   local result = er.beat_as_table(60, 41)
   local expected = { 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 }
   lu.assertEquals(result, expected)
