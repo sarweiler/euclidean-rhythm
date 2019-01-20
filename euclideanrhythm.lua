@@ -1,3 +1,21 @@
+-- Euclidean Rhythm
+--
+-- provides euclidean rhythms in various forms.
+-- a test suite can be found here: https://github.com/sarweiler/euclidean-rhythm
+--
+-- usage:
+-- er = require("euclideanrhythm")
+--
+-- er.beat_as_table(13,5)
+-- > {1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0}
+--
+-- er.beat_as_boolean_table(13,5)
+-- > {true, false, false, true, false, true, false, false, true, false, true, false, false}
+--
+-- er.beat_as_string(13,5)
+-- > "1001010010100"
+--
+
 local EuclideanRhythm = {}
 EuclideanRhythm.__index = EuclideanRhythm
 
@@ -33,11 +51,6 @@ function EuclideanRhythm.beat_as_table(sequence_len, beats_len)
 end
 
 
-function EuclideanRhythm.beat_as_string(sequence_len, beats_len)
-  return table.concat(EuclideanRhythm.beat_as_table(sequence_len, beats_len), "")
-end
-
-
 function EuclideanRhythm.beat_as_boolean_table(sequence_len, beats_len)
   return table_map(
     function(step)
@@ -45,6 +58,11 @@ function EuclideanRhythm.beat_as_boolean_table(sequence_len, beats_len)
     end,
     EuclideanRhythm.beat_as_table(sequence_len, beats_len)
   )
+end
+
+
+function EuclideanRhythm.beat_as_string(sequence_len, beats_len)
+  return table.concat(EuclideanRhythm.beat_as_table(sequence_len, beats_len), "")
 end
 
 
