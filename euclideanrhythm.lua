@@ -1,6 +1,6 @@
--- Euclidean Rhythm
+-- euclidean rhythm
 --
--- provides euclidean rhythms in various forms.
+-- provides euclidean rhythms in various formats.
 -- a test suite can be found here: https://github.com/sarweiler/euclidean-rhythm
 --
 -- usage:
