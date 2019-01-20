@@ -33,6 +33,11 @@ function EuclideanRhythm.beat_as_table(sequence_len, beats_len)
 end
 
 
+function EuclideanRhythm.beat_as_string(sequence_len, beats_len)
+  return table.concat(EuclideanRhythm.beat_as_table(sequence_len, beats_len), "")
+end
+
+
 build_rhythm = function(beat_table)
   local beats = split_beats(beat_table)
   local rest = split_rest(beat_table)

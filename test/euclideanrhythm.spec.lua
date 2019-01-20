@@ -53,4 +53,10 @@ function TestEuclideanRhythm:testEdgeCaseLongAndComplexAsTable()
   lu.assertEquals(result, expected)
 end
 
+function TestEuclideanRhythm:testBeatAsString()
+  local result = er.beat_as_string(13,5)
+  local expected = "1001010010100"
+  lu.assertEquals(result, expected)
+end
+
 os.exit( lu.LuaUnit.run() )
