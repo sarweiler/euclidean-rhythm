@@ -1,6 +1,6 @@
 # euclidean rhythm
 
-Provides [euclidean rhythms](https://en.wikipedia.org/wiki/Euclidean_rhythm) in various forms.
+Provides [euclidean rhythms](https://en.wikipedia.org/wiki/Euclidean_rhythm) in various formats.
 
 ## Usage:
 
