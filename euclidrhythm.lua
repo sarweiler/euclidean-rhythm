@@ -1,10 +1,9 @@
 local EuclidRhythm = {}
 
-EuclidRhythm.__index = EuclidRhythm
+-- localize helper functions
+local merge, build_rhythm, split_beats, split_rest, max_part_length, min_part_length, table_flatten
 
-function EuclidRhythm.new()
-  error("do not instantiate")
-end
+EuclidRhythm.__index = EuclidRhythm
 
 function EuclidRhythm.beat_as_table(sequence_len, beats_len)
   if (beats_len > sequence_len) then
@@ -33,7 +32,8 @@ function EuclidRhythm.beat_as_table(sequence_len, beats_len)
   end
 end
 
-function build_rhythm(beat_table)
+
+build_rhythm = function(beat_table)
   local beats = split_beats(beat_table)
   local rest = split_rest(beat_table)
 
@@ -44,13 +44,14 @@ function build_rhythm(beat_table)
   end
 end
 
-function merge(beats, rest)
+
+merge = function(beats, rest)
   local beats_clone = {table.unpack(beats)}
   local rest_clone = {table.unpack(rest)}
 
   for i,part_beat in ipairs(beats_clone) do
     if (i <= #rest) then
-      for i,part_rest in ipairs(rest[i]) do
+      for _,part_rest in ipairs(rest[i]) do
         table.insert(part_beat, part_rest)
       end
     end
@@ -63,7 +64,8 @@ function merge(beats, rest)
   end
 end
 
-function split_beats(beat_table)
+
+split_beats = function(beat_table)
   local max_part_beat_len = max_part_length(beat_table)
   local min_part_beat_len = min_part_length(beat_table)
 
@@ -90,7 +92,8 @@ function split_beats(beat_table)
   end
 end
 
-function split_rest(beat_table)
+
+split_rest = function(beat_table)
   local max_part_beat_len = max_part_length(beat_table)
   local min_part_beat_len = min_part_length(beat_table)
 
@@ -117,7 +120,8 @@ function split_rest(beat_table)
   end
 end
 
-function max_part_length(beat_table)
+
+max_part_length = function(beat_table)
   local max_len = 0
   for i,part_beat in ipairs(beat_table) do
     local part_beat_length = #part_beat
@@ -128,7 +132,8 @@ function max_part_length(beat_table)
   return max_len
 end
 
-function min_part_length(beat_table)
+
+min_part_length = function(beat_table)
   local min_len = #beat_table[1]
   for _,part_beat in ipairs(beat_table) do
     local part_beat_length = #part_beat
@@ -139,20 +144,22 @@ function min_part_length(beat_table)
   return min_len
 end
 
-function table_flatten(arr)
-  local result = { }
+
+table_flatten = function(tbl)
+  local flattened_table = { }
   
-  local function flatten(arr)
-    for _, v in ipairs(arr) do
-      if type(v) == "table" then
+  local function flatten(tbl)
+    for _, v in ipairs(tbl) do
+      if (type(v) == "table") then
         flatten(v)
       else
-        table.insert(result, v)
+        table.insert(flattened_table, v)
       end
     end
   end
-  flatten(arr)
-  return result
+  flatten(tbl)
+  return flattened_table
 end
+
 
 return EuclidRhythm
