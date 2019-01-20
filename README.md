@@ -11,7 +11,7 @@ Import the module:
 er = require("euclideanrhythm")
 ```
 
-This generates a sequence of length 13 with 5 beats in it.
+Generating a sequence of length 13 with 5 beats in it:
 ```lua
 er.beat_as_table(13,5)
 -- {1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0}
