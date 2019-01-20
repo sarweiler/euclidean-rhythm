@@ -27,10 +27,10 @@ er.beat_as_string(13,5)
 
 luaunit is used for unit testing, so make sure to have it installed.
 ```bash
-$ luarocks install luaunit
+luarocks install luaunit
 ```
 
 To run the tests:
 ```bash
-$ lua test/euclideanrhythm.spec.lua -v
+lua test/euclideanrhythm.spec.lua -v
 ```
