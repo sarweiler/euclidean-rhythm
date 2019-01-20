@@ -23,4 +23,16 @@ function TestEuclidRhythm:testComplexBeatConstructionAsTable()
   lu.assertEquals(result, expected)
 end
 
+function TestEuclidRhythm:testEdgeCaseOnlyBeatsAsTable()
+  local result = er.beat_as_table(4,4)
+  local expected = {1, 1, 1, 1}
+  lu.assertEquals(result, expected)
+end
+
+function TestEuclidRhythm:testEdgeNoBeatsAsTable()
+  local result = er.beat_as_table(4,0)
+  local expected = {0, 0, 0, 0}
+  lu.assertEquals(result, expected)
+end
+
 os.exit( lu.LuaUnit.run() )

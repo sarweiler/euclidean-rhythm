@@ -11,15 +11,26 @@ function EuclidRhythm.beat_as_table(sequence_len, beats_len)
     error("beats_len should be less than or equal to sequence_len")
   end
   local beat_container = {}
-  for i=1,beats_len do
-    table.insert( beat_container, { 1 } )
+  local has_beat = false
+  
+  if (beats_len > 0) then
+    has_beat = true
+    for i=1,beats_len do
+      table.insert( beat_container, { 1 } )
+    end
   end
 
-  for i=1,(sequence_len - beats_len) do
-    table.insert( beat_container, { 0 } )
+  if (sequence_len > 0) then
+    for i=1,(sequence_len - beats_len) do
+      table.insert( beat_container, { 0 } )
+    end
   end
 
-  return build_rhythm(beat_container)
+  if (has_beat and #beat_container > 0) then
+    return build_rhythm(beat_container)
+  else
+    return table_flatten(beat_container)
+  end
 end
 
 function build_rhythm(beat_table)
