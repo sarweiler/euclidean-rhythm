@@ -29,9 +29,27 @@ function TestEuclidRhythm:testEdgeCaseOnlyBeatsAsTable()
   lu.assertEquals(result, expected)
 end
 
-function TestEuclidRhythm:testEdgeNoBeatsAsTable()
+function TestEuclidRhythm:testEdgeCaseNoBeatsAsTable()
   local result = er.beat_as_table(4,0)
   local expected = {0, 0, 0, 0}
+  lu.assertEquals(result, expected)
+end
+
+function TestEuclidRhythm:testEdgeCaseSingleBeatAsTable()
+  local result = er.beat_as_table(1,1)
+  local expected = {1}
+  lu.assertEquals(result, expected)
+end
+
+function TestEuclidRhythm:testEdgeCaseLongAsTable()
+  local result = er.beat_as_table(109,107)
+  local expected = { 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+  lu.assertEquals(result, expected)
+end
+
+function TestEuclidRhythm:testEdgeCaseLongAndComplexAsTable()
+  local result = er.beat_as_table(60, 41)
+  local expected = { 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 }
   lu.assertEquals(result, expected)
 end
 
