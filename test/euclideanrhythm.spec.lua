@@ -59,4 +59,10 @@ function TestEuclideanRhythm:testBeatAsString()
   lu.assertEquals(result, expected)
 end
 
+function TestEuclideanRhythm:testBeatAsBooleanTable()
+  local result = er.beat_as_boolean_table(13,5)
+  local expected = {true, false, false, true, false, true, false, false, true, false, true, false, false}
+  lu.assertEquals(result, expected)
+end
+
 os.exit( lu.LuaUnit.run() )

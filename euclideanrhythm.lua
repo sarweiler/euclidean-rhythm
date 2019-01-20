@@ -1,9 +1,9 @@
 local EuclideanRhythm = {}
+EuclideanRhythm.__index = EuclideanRhythm
 
 -- localize helper functions
-local merge, build_rhythm, split_beats, split_rest, max_part_length, min_part_length, table_flatten
+local merge, build_rhythm, split_beats, split_rest, max_part_length, min_part_length, table_flatten, table_map
 
-EuclideanRhythm.__index = EuclideanRhythm
 
 function EuclideanRhythm.beat_as_table(sequence_len, beats_len)
   if (beats_len > sequence_len) then
@@ -35,6 +35,16 @@ end
 
 function EuclideanRhythm.beat_as_string(sequence_len, beats_len)
   return table.concat(EuclideanRhythm.beat_as_table(sequence_len, beats_len), "")
+end
+
+
+function EuclideanRhythm.beat_as_boolean_table(sequence_len, beats_len)
+  return table_map(
+    function(step)
+      return step == 1
+    end,
+    EuclideanRhythm.beat_as_table(sequence_len, beats_len)
+  )
 end
 
 
@@ -164,6 +174,15 @@ table_flatten = function(tbl)
   end
   flatten(tbl)
   return flattened_table
+end
+
+
+table_map = function(f, tbl)
+  local mapped_tbl = {}
+  for i,v in ipairs(tbl) do
+    mapped_tbl[i] = f(v)
+  end
+  return mapped_tbl
 end
 
 
