@@ -22,3 +22,15 @@ er.beat_as_boolean_table(13,5)
 er.beat_as_string(13,5)
 -- "1001010010100"
 ```
+
+## Running the tests
+
+luaunit is used for unit testing, so make sure to have it installed.
+```bash
+$ luarocks install luaunit
+```
+
+To run the tests:
+```bash
+$ lua test/euclideanrhythm.spec.lua -v
+```
